@@ -1,0 +1,15 @@
+server:
+  port:
+
+spring:
+  application:
+    name: VotationChallenge
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name:
+  jpa:
+    hibernate:
+      ddl-auto: none
+
