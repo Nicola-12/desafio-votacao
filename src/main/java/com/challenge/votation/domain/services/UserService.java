@@ -2,6 +2,7 @@ package com.challenge.votation.domain.services;
 
 import com.challenge.votation.application.dto.request.UserRequestDTO;
 import com.challenge.votation.application.dto.response.UserResponseDTO;
+import com.challenge.votation.domain.exceptions.UserRegisterException;
 import com.challenge.votation.domain.model.User;
 import com.challenge.votation.infra.repositories.UserRepository;
 import java.util.List;
@@ -16,6 +17,11 @@ public class UserService
     
     public UserResponseDTO create( UserRequestDTO userRequestDTO )
     {
+        userRepository.findByCpf( userRequestDTO.cpf() )
+                      .ifPresent( user -> {
+                          throw new UserRegisterException( "Usuário já está cadastrado" );
+                      } );
+        
         User user = new User();
         user.setName( userRequestDTO.name() );
         user.setCpf( userRequestDTO.cpf() );
