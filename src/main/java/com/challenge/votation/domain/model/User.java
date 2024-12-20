@@ -7,19 +7,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table( name = "users" )
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class User
 {
@@ -30,8 +26,6 @@ public class User
     private String name;
     
     @Column( unique = true )
-    @NotNull
-    @CPF
     private String cpf;
     
     @Column( name = "created_at",
