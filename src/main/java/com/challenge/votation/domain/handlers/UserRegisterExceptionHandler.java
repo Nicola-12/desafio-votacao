@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class UserRegisterExceptionHandler
-{
+public class UserRegisterExceptionHandler {
     @ExceptionHandler( UserRegisterException.class )
     @ResponseBody
     @ResponseStatus( HttpStatus.BAD_REQUEST )

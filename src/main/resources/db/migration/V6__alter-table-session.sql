@@ -1,0 +1,1 @@
+ALTER TABLE session RENAME COLUMN title TO name;
