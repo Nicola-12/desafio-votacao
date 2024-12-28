@@ -12,7 +12,6 @@ import com.challenge.votation.infra.repositories.SessionRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
-import org.apache.catalina.session.TooManyActiveSessionsException;
 import org.springframework.stereotype.Service;
 
 @Service

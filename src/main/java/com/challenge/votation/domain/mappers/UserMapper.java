@@ -6,7 +6,7 @@ import com.challenge.votation.domain.model.User;
 import com.challenge.votation.infra.config.BaseMapperConfig;
 import org.mapstruct.Mapper;
 
-@Mapper( config = BaseMapperConfig.class, componentModel = "spring" )
+@Mapper( config = BaseMapperConfig.class )
 public interface UserMapper {
     
     User dtoToEntity( UserRequestDTO dto );

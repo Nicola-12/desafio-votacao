@@ -2,6 +2,7 @@ package com.challenge.votation.application.web.session;
 
 import com.challenge.votation.application.dto.request.SessionRequestDTO;
 import com.challenge.votation.application.dto.response.SessionResponseDTO;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +17,7 @@ public interface SessionApi
 {
     @PostMapping
     @ResponseStatus( HttpStatus.CREATED )
-    SessionResponseDTO create( @RequestBody  SessionRequestDTO body );
+    SessionResponseDTO create( @RequestBody @Valid SessionRequestDTO body );
     
     @GetMapping
     List<SessionResponseDTO> findAll();

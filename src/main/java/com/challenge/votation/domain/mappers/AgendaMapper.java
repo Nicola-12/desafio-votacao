@@ -7,7 +7,7 @@ import com.challenge.votation.infra.config.BaseMapperConfig;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper( config = BaseMapperConfig.class, componentModel = "spring" )
+@Mapper( config = BaseMapperConfig.class )
 public interface AgendaMapper
 {
     AgendaMapper INSTANCE = Mappers.getMapper( AgendaMapper.class );

@@ -4,11 +4,11 @@ import com.challenge.votation.application.dto.request.UserRequestDTO;
 import com.challenge.votation.application.dto.response.UserResponseDTO;
 import com.challenge.votation.domain.services.UserService;
 import java.util.Collection;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserController
     implements
         UserApi

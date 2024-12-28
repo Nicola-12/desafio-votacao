@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-public class SessionController implements SessionApi
+public class SessionController
+    implements
+        SessionApi
 {
     private final SessionService service;
     
