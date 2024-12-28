@@ -2,6 +2,7 @@ package com.challenge.votation.domain.services;
 
 import com.challenge.votation.application.dto.request.SessionRequestDTO;
 import com.challenge.votation.application.dto.response.SessionResponseDTO;
+import com.challenge.votation.domain.exceptions.ActiveSessionException;
 import com.challenge.votation.domain.exceptions.NotFoundException;
 import com.challenge.votation.domain.mappers.SessionMapper;
 import com.challenge.votation.domain.model.Agenda;
@@ -32,7 +33,7 @@ public class SessionService
         List<Session> activeSessions = sessionRepository.findAllByAgendaIdAndFinishedAtAfter( body.agendaId(), LocalDateTime.now() );
         
         if ( ! activeSessions.isEmpty() ) {
-            throw new TooManyActiveSessionsException( "Já existe uma sessão ativa para esta pauta", 1 );
+            throw new ActiveSessionException( "Já existe uma sessão ativa para esta pauta" );
         }
         
         session = sessionRepository.save( session );
