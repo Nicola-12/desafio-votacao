@@ -3,6 +3,7 @@ package com.challenge.votation.domain.services;
 import com.challenge.votation.application.dto.request.VoteRequestDTO;
 import com.challenge.votation.application.dto.response.VoteResponseDTO;
 import com.challenge.votation.domain.exceptions.NotFoundException;
+import com.challenge.votation.domain.exceptions.UserAlreadyVotedException;
 import com.challenge.votation.domain.mappers.VoteMapper;
 import com.challenge.votation.domain.model.Agenda;
 import com.challenge.votation.domain.model.User;
@@ -28,6 +29,11 @@ public class VoteService {
         
         Agenda agenda = agendaRepository.findById( body.agendaId() )
                                         .orElseThrow( () -> new NotFoundException( "Pauta não foi encontrada" ) );
+        
+        voteRepository.findByUserIdAndAgendaId( user.getId(), agenda.getId() )
+                      .ifPresent( vote -> {
+                          throw new UserAlreadyVotedException( "Usuário já votou nessa pauta" );
+                      } );
         
         Vote vote = new Vote();
         vote.setAgenda( agenda );
