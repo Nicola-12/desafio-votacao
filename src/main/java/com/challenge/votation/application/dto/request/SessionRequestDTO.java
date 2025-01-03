@@ -6,5 +6,5 @@ import jakarta.validation.constraints.NotNull;
 public record SessionRequestDTO(
         @NotNull( message = "Necessário informar um nome para a sessão" ) String name,
         String description,
-        @Min( value = 3, message = "Duração deve ser maior 3 minutos" ) Integer duration,
+        @Min( value = 1, message = "Duração deve ser maior 1 minutos" ) Integer duration,
         @NotNull( message = "Necessário informar para qual pauta está sessão está sendo vinculada" ) Long agendaId ) {}

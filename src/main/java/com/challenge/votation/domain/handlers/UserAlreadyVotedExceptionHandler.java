@@ -13,7 +13,7 @@ public class UserAlreadyVotedExceptionHandler {
     
     @ExceptionHandler( UserAlreadyVotedException.class )
     @ResponseBody
-    @ResponseStatus( HttpStatus.BAD_REQUEST )
+    @ResponseStatus( HttpStatus.GONE )
     public ErrorResponseDTO handle( UserAlreadyVotedException exception ) {
         return new ErrorResponseDTO( exception.getMessage() );
     }
