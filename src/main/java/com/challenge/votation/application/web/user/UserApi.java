@@ -4,6 +4,7 @@ import com.challenge.votation.application.dto.request.UserRequestDTO;
 import com.challenge.votation.application.dto.response.UserResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import java.util.Collection;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +21,7 @@ public interface UserApi
     @Operation( description = "Realiza o cadastro de um usuário" )
     @PostMapping
     @ResponseStatus( HttpStatus.CREATED )
-    UserResponseDTO create( @RequestBody UserRequestDTO body );
+    UserResponseDTO create( @RequestBody @Valid UserRequestDTO body );
     
     @Operation( description = "Retorna uma lista com todos os usuários cadastrados" )
     @GetMapping

@@ -1,3 +1,6 @@
 package com.challenge.votation.application.dto.request;
 
-public record UserRequestDTO( String name, String cpf ) {}
+import jakarta.validation.constraints.NotNull;
+
+public record UserRequestDTO( String name,
+                              @NotNull( message = "Necessário informar um cpf para o usuário" ) String cpf ) {}
