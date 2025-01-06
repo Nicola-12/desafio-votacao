@@ -5,6 +5,7 @@ import com.challenge.votation.application.dto.response.VoteResponseDTO;
 import com.challenge.votation.application.dto.response.VoteResultResponseDTO;
 import com.challenge.votation.domain.enums.VoteStatus;
 import com.challenge.votation.domain.exceptions.NotFoundException;
+import com.challenge.votation.domain.exceptions.SessionExpiredException;
 import com.challenge.votation.domain.exceptions.UserAlreadyVotedException;
 import com.challenge.votation.domain.mappers.AgendaMapper;
 import com.challenge.votation.domain.mappers.VoteMapper;
@@ -45,8 +46,8 @@ public class VoteService {
         Session session = sessionRepository.findByAgendaId( agenda.getId() )
                                            .orElseThrow( () -> new NotFoundException( "Sessão não encontrada" ) );
         
-        if ( session == null || session.getFinishedAt().isBefore( LocalDateTime.now() ) ) {
-            throw new NotFoundException( "Sessão não encontrada ou já encerrada" );
+        if ( session.getFinishedAt().isBefore( LocalDateTime.now() ) ) {
+            throw new SessionExpiredException();
         }
         
         Vote vote = new Vote();
