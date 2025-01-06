@@ -8,7 +8,6 @@ import com.challenge.votation.domain.model.User;
 import com.challenge.votation.infra.repositories.UserRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,8 +16,6 @@ public class UserService
 {
     private final UserRepository userRepository;
     
-    private final UserMapper userMapper = Mappers.getMapper( UserMapper.class );
-    
     public UserResponseDTO create( UserRequestDTO userRequestDTO )
     {
         userRepository.findByCpf( userRequestDTO.cpf() )
@@ -26,16 +23,16 @@ public class UserService
                           throw new UserRegisterException( "Usuário já está cadastrado" );
                       } );
         
-        User newUser = userRepository.save( userMapper.dtoToEntity( userRequestDTO ) );
+        User newUser = userRepository.save( UserMapper.INSTANCE.dtoToEntity( userRequestDTO ) );
         
-        return userMapper.entityToDto( newUser );
+        return UserMapper.INSTANCE.entityToDto( newUser );
     }
     
     public List<UserResponseDTO> findAll()
     {
         return userRepository.findAll()
                              .stream()
-                             .map( userMapper::entityToDto )
+                             .map( UserMapper.INSTANCE::entityToDto )
                              .toList();
     }
 }
