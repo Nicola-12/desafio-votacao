@@ -65,6 +65,23 @@ class SessionRepositoryTest
         Assertions.assertThat( result.isEmpty() ).isFalse();
     }
     
+    @Test
+    @DisplayName( "Should return true when exists a session with the given agenda id" )
+    public void sessionExpired()
+    {
+        Agenda agenda = buildAgenda();
+        
+        SessionRequestDTO sessionRequestDTO = new SessionRequestDTO( "Sessão 01", "descrição", 4, agenda.getId() );
+        
+        createSession( sessionRequestDTO, agenda );
+        
+        Optional<Session> session = sessionRepository.findByAgendaId( agenda.getId() );
+        
+        Assertions.assertThat( session.isPresent() ).isTrue();
+        
+        Assertions.assertThat( session.get().getFinishedAt().isAfter( LocalDateTime.now().plusMinutes( session.get().getDuration() ) ) ).isTrue();
+    }
+    
     private void createSession( SessionRequestDTO sessionRequestDTO, Agenda agenda )
     {
         Session session = SessionMapper.INSTANCE.dtoToEntity( sessionRequestDTO );
