@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.Mockito.when;
 
 @WebMvcTest( AgendaController.class )
-class AgendaControllerMockMvcTest
+class AgendaControllerTest
 {
     private static final String URI = "/api/v1/agenda";
     
